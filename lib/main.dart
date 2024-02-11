@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quickly_memo/footer.dart';
-import 'package:quickly_memo/home_page.dart';
+import 'package:quickly_memo/VIews/footer.dart';
+import 'package:quickly_memo/VIews/home_page.dart';
 
 void main() {
   runApp(const MyApp());
