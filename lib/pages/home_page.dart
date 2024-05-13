@@ -20,16 +20,20 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        shape: const CircleBorder(),
-        child: const Icon(
-          Icons.add,
-          size: 30,
+      floatingActionButton: SizedBox(
+        width: 80,
+        height: 80,
+        child: FloatingActionButton(
+          shape: const CircleBorder(),
+          child: const Icon(
+            Icons.add,
+            size: 40,
+          ),
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const TextEditor()));
+          },
         ),
-        onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const TextEditor()));
-        },
       ),
       bottomNavigationBar: const Footer(),
     );
