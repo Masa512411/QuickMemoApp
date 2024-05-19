@@ -2,12 +2,12 @@ name: quickly_memo
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.1.3 <4.0.0"
+  sdk: '>=3.1.3 <4.0.0'
 
 dependencies:
   flutter:
@@ -20,6 +20,8 @@ dependencies:
   super_clipboard: ^0.8.5
   flutter_quill: ^9.1.1
   gap: ^3.0.1
+  shared_preferences: ^2.2.3
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +31,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: 'assets/images/Quickly Memo Icon Design.png'
