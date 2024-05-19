@@ -64,27 +64,26 @@ class TextEditor extends StatelessWidget {
               child: SizedBox(
                   height: 500,
                   child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 5,
-                            color: Color.fromARGB(255, 124, 123, 123)),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      // decoration: BoxDecoration(
+                      //   border: Border.all(
+                      //       width: 5,
+                      //       color: Color.fromARGB(255, 124, 123, 123)),
+                      //   borderRadius: BorderRadius.circular(10),
+                      // ),
                       child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: QuillEditor.basic(
-                          configurations: QuillEditorConfigurations(
-                            controller: controller,
-                            readOnly: false,
-                            sharedConfigurations:
-                                const QuillSharedConfigurations(
-                              locale: Locale('en'),
-                            ),
-                          ),
-                          scrollController: ScrollController(),
-                          focusNode: FocusNode(),
+                    padding: const EdgeInsets.all(10),
+                    child: QuillEditor.basic(
+                      configurations: QuillEditorConfigurations(
+                        controller: controller,
+                        readOnly: false,
+                        sharedConfigurations: const QuillSharedConfigurations(
+                          locale: Locale('en'),
                         ),
-                      ))))
+                      ),
+                      scrollController: ScrollController(),
+                      focusNode: FocusNode(),
+                    ),
+                  ))))
         ],
       ),
       bottomNavigationBar: const Footer(),
