@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:quickly_memo/pages/footer.dart';
 import 'package:quickly_memo/pages/text_editor.dart';
+import 'package:localstore/localstore.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+  final db = Localstore.instance;
+
+  Future<Map<String, dynamic>> getDoc() async {
+    final data = await db.collection('todos').get();
+    if (data != null) {
+      return data;
+    } else {
+      return {};
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +24,34 @@ class HomePage extends StatelessWidget {
         title: const Text('Quick Memo'),
         backgroundColor: const Color.fromARGB(255, 202, 205, 116),
       ),
-      body: const Center(
-        child: Text(
-          "Hello",
-          style: TextStyle(fontSize: 100),
-        ),
+      body: FutureBuilder<Map<String, dynamic>>(
+        future: getDoc(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (snapshot.hasError) {
+            // エラー
+            return Center(
+              child: Text(snapshot.error.toString()),
+            );
+          }
+          final data = snapshot.data!;
+          final keys = data.keys.toList();
+          return ListView.builder(
+            itemCount: keys.length,
+            itemBuilder: (context, index) {
+              var key = keys[index];
+              return Card(
+                child: ListTile(
+                  title: Text('${data[key]['insert']} : $key'),
+                ),
+              );
+            },
+          );
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: SizedBox(

@@ -1,20 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
+import 'package:localstore/localstore.dart';
 import 'package:quickly_memo/pages/footer.dart';
 
 class TextEditor extends StatelessWidget {
   const TextEditor({super.key});
+
+  void _onPressed(QuillController controller) {
+    final db = Localstore.instance;
+
+    final json = controller.document.toDelta().toJson();
+    final id = db.collection('doc').doc().id;
+    final docLength = controller.document.length;
+
+    db.collection('todos').doc(id).set(json[0]);
+    Fluttertoast.showToast(msg: '保存しました。$docLength');
+  }
 
   @override
   Widget build(BuildContext context) {
     final QuillController controller = QuillController.basic();
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Quick Memo'),
-        backgroundColor: const Color.fromARGB(255, 202, 205, 116),
-      ),
+          centerTitle: true,
+          title: const Text('Quick Memo'),
+          backgroundColor: const Color.fromARGB(255, 202, 205, 116),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () => (controller.document.length != 1)
+                    ? () => _onPressed(controller)
+                    : null,
+                child: const Text('完了',
+                    style: TextStyle(fontWeight: FontWeight.bold))),
+            TextButton(
+              onPressed: () {
+                return null;
+              },
+              child: Text('ダミー'),
+            )
+          ]),
       body: Column(
         children: [
           Card(
