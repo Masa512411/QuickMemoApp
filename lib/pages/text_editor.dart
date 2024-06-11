@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
 import 'package:localstore/localstore.dart';
 import 'package:quickly_memo/pages/footer.dart';
+import 'package:quickly_memo/pages/list_page.dart';
 
 class TextEditor extends StatelessWidget {
   const TextEditor({super.key});
@@ -29,17 +30,15 @@ class TextEditor extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 202, 205, 116),
           actions: <Widget>[
             TextButton(
-                onPressed: () => (controller.document.length != 1)
-                    ? () => _onPressed(controller)
-                    : null,
+                onPressed: () => {
+                      _onPressed(controller),
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return ListPage();
+                      }))
+                    },
                 child: const Text('完了',
                     style: TextStyle(fontWeight: FontWeight.bold))),
-            TextButton(
-              onPressed: () {
-                return null;
-              },
-              child: Text('ダミー'),
-            )
           ]),
       body: Column(
         children: [
