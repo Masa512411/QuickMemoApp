@@ -21,6 +21,6 @@ class MyApp extends StatelessWidget {
               seedColor: const Color.fromARGB(255, 202, 205, 116)),
           useMaterial3: true,
         ),
-        home: ListPage());
+        home: const ListPage());
   }
 }

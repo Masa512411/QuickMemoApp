@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quickly_memo/pages/list_page.dart';
+
+import 'setting_page.dart';
 
 class Footer extends StatefulWidget {
   const Footer({super.key});
@@ -9,10 +12,17 @@ class Footer extends StatefulWidget {
 
 class FooterState extends State<Footer> {
   int _selectedIndex = 0;
+
+  final tabs = <Widget>[
+    ListPage(),
+    SettingPage(),
+  ];
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => tabs[_selectedIndex]));
   }
 
   @override
