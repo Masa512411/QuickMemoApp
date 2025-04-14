@@ -24,6 +24,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   localstore: ^1.4.0
   fluttertoast: ^8.2.6
+  flutter_riverpod: any
 
 dev_dependencies:
   flutter_test:
