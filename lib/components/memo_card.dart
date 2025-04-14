@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localstore/localstore.dart';
 
-class MemoCard extends StatelessWidget {
-  const MemoCard({
+class MemoCard extends ConsumerWidget {
+  MemoCard({
     super.key,
     required this.data,
     required this.listKey,
@@ -15,21 +16,22 @@ class MemoCard extends StatelessWidget {
 
   void deleteDocument() {
     final db = Localstore.instance;
-    db.collection('todos').doc(listKey.split('/').last).delete();
+    db.collection('documents').doc(listKey.split('/').last).delete();
     onDelete();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       child: ListTile(
-        title: Text('${data[listKey]['insert']}'),
+        title: Text(data[listKey]['title'] ?? "Not title"),
         trailing: IconButton(
           icon: const Icon(
             Icons.delete,
           ),
           onPressed: () {
-            deleteDocument();
+            debugPrint('data : ${data['title']}');
+            onDelete();
           },
         ),
       ),
