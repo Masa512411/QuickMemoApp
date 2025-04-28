@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:gap/gap.dart';
-import 'package:quickly_memo/pages/footer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quickly_memo/state/document_provider.dart';
+import '../components/common_app_bar.dart';
 
 // import 'package:quickly_memo/pages/list_page.dart';
 
@@ -32,9 +32,8 @@ class _TextEditorPageState extends ConsumerState<TextEditorPage> {
   Widget build(BuildContext context) {
     final documents = ref.read(documentsProvider.notifier);
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Quick Memo'),
+      appBar: CommonAppBar(
+        title: 'Quick Memo',
         actions: <Widget>[
           TextButton(
             onPressed: () async {
@@ -50,7 +49,6 @@ class _TextEditorPageState extends ConsumerState<TextEditorPage> {
                 // 成功時に前の画面に戻る
                 Navigator.of(context).pop(true);
               } catch (e) {
-                // エラー時の処理
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('エラーが発生しました: $e')),
                 );
@@ -130,7 +128,6 @@ class _TextEditorPageState extends ConsumerState<TextEditorPage> {
           ),
         ],
       ),
-      bottomNavigationBar: const Footer(),
     );
   }
 }

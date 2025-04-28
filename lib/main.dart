@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:quickly_memo/pages/footer.dart';
-import 'package:quickly_memo/pages/list_page.dart';
-// import 'package:quickly_memo/pages/text_editor.dart';
+import 'package:quickly_memo/pages/home_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +20,6 @@ class MyApp extends StatelessWidget {
               seedColor: const Color.fromARGB(255, 202, 205, 116)),
           useMaterial3: true,
         ),
-        home: ListPage());
+        home: const HomePage());
   }
 }

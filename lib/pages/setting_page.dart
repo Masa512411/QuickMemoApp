@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quickly_memo/pages/list_page.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
